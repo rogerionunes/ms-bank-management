@@ -1,6 +1,8 @@
 <?php
 
 /** @var \Laravel\Lumen\Routing\Router $router */
+
+use App\Http\Controllers\BankAccountController;
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -14,15 +16,5 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
-
-$router->get('/test-db', function () {
-    try {
-        DB::connection()->getPdo();
-        return "Connected to the database successfully!";
-    } catch (\Exception $e) {
-        return "Could not connect to the database. Error: " . $e->getMessage();
-    }
-});
+$router->post('/conta', 'BankAccountController@store');
+$router->get('/conta', 'BankAccountController@show');

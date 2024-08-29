@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transactions', function (Blueprint $table) {
-            $table->id();
-            $table->enum('type', ['P', 'C', 'D']);
-            $table->float('fee');
-            $table->float('amount');
+        Schema::create('conta', function (Blueprint $table) {
+            $table->id('id_conta');
+            $table->integer('numero_conta');
+            $table->decimal('saldo', 10, 2);
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('conta');
     }
 };

@@ -48,6 +48,11 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
+$app->bind(
+    \App\Repositories\BankAccountRepositoryInterface::class,
+    \App\Repositories\BankAccountRepository::class
+);
+
 /*
 |--------------------------------------------------------------------------
 | Register Config Files
