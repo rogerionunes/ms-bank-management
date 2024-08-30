@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\BankAccount;
 
@@ -12,12 +11,12 @@ class BankAccountTest extends TestCase
     public function test_create_account_successfully()
     {
         $response = $this->post('/api/conta', [
-            'numero_conta' => 234,
+            'numero_conta' => 1212,
             'saldo' => 180.37
         ]);
 
         $response->assertJson(json_encode([
-            'numero_conta' => 234,
+            'numero_conta' => 1212,
             'saldo' => 180.37
         ]));
     }
@@ -57,6 +56,19 @@ class BankAccountTest extends TestCase
     public function test_show_account_not_found()
     {
         $response = $this->get('/api/conta?numero_conta=999');
+
+        $response->assertJson(json_encode([
+            'message' => 'Conta não encontrada'
+        ]));
+    }
+
+    public function test_execute_transaction_successfully()
+    {
+        $response = $this->put('/api/conta', [
+            'numero_conta' => 234,
+            'valor' => 10.00, 
+            'forma_pagamento' => 'P' 
+        ]);
 
         $response->assertJson(json_encode([
             'message' => 'Conta não encontrada'

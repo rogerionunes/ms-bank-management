@@ -16,5 +16,6 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-$router->post('/conta', 'BankAccountController@store');
-$router->get('/conta', 'BankAccountController@show');
+$router->post('/conta', ['middleware' => ['log'], 'uses' => 'BankAccountController@store']);
+$router->get('/conta', ['middleware' => ['log'], 'uses' => 'BankAccountController@show']);
+$router->post('/transacao', ['middleware' => ['log'], 'uses' => 'BankAccountController@update']);

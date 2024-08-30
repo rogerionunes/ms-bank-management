@@ -50,7 +50,7 @@ $app->singleton(
 
 $app->bind(
     \App\Repositories\BankAccountRepositoryInterface::class,
-    \App\Repositories\BankAccountRepository::class
+    \App\Repositories\BankAccountRepository::class,
 );
 
 /*
@@ -79,6 +79,10 @@ $app->configure('database');
 |
 */
 
+$app->routeMiddleware([
+    'log' => App\Http\Middleware\LogRequests::class,
+]);
+
 // $app->middleware([
 //     App\Http\Middleware\ExampleMiddleware::class
 // ]);
@@ -101,6 +105,8 @@ $app->configure('database');
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+
+$app->register(Illuminate\Validation\ValidationServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
