@@ -61,12 +61,20 @@ Siga os passos abaixo para instalar e configurar a API:
 
 5. **Faça chamada dos endpoints:**
 
-    Para criar as tabelas no banco de dados:
+    Utilize Postman ou outra ferramenta do seu gosto:
 
     ```bash
-    POST /conta -> Cria uma nova conta
-    GET /conta -> Pesquisa uma conta especifica
-    POST /transacao -> Gera uma transação em uma conta
+    POST /conta -> Cria uma nova conta bancaria
+        - numero_conta: 235
+        - saldo: 1500
+
+    GET /conta -> Exibe o saldo de uma conta bancaria
+        - numero_conta: 235
+
+    POST /transacao -> Gera uma transação em uma conta bancaria
+        - numero_conta: 235
+        - forma_pagamento: P, C, D (pix, credito ou debito)
+        - valor: 100
     ```
 
 ## Configuração
