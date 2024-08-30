@@ -1,26 +1,106 @@
-# Lumen PHP Framework
+# API de Gestão Bancária
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/lumen)](https://packagist.org/packages/laravel/lumen-framework)
+Este projeto é uma API de gestão bancária desenvolvida em Lumen. A API é leve, rápida e configurada para rodar em um ambiente Docker para facilitar a instalação e a execução.
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+## Índice
 
-> **Note:** In the years since releasing Lumen, PHP has made a variety of wonderful performance improvements. For this reason, along with the availability of [Laravel Octane](https://laravel.com/docs/octane), we no longer recommend that you begin new projects with Lumen. Instead, we recommend always beginning new projects with [Laravel](https://laravel.com).
+- [Pré-requisitos](#pré-requisitos)
+- [Instalação](#instalação)
+- [Configuração](#configuração)
+- [Execução](#execução)
+- [Uso](#uso)
+- [Endpoints](#endpoints)
+- [Testes](#testes)
+- [Contribuição](#contribuição)
+- [Licença](#licença)
 
-## Official Documentation
+## Pré-requisitos
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+Antes de começar, certifique-se de ter os seguintes softwares instalados:
 
-## Contributing
+- [Docker](https://www.docker.com/get-started)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Instalação
 
-## Security Vulnerabilities
+Siga os passos abaixo para instalar e configurar a API:
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+1. **Clone o repositório:**
 
-## License
+    ```bash
+    git clone https://github.com/rogerionunes/ms-bank-management.git
+    cd ms-bank-management
+    ```
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+2. **Crie o arquivo `.env`:**
+
+    Copie o arquivo `.env.example` para `.env` e ajuste conforme necessário:
+
+    ```bash
+    cp .env.example .env
+    ```
+
+3. **Inicie os contêineres Docker:**
+
+    Use o Docker Compose para construir e iniciar os contêineres:
+
+    ```bash
+    docker-compose up -d --build
+    ```
+
+4. **Instale as dependências:**
+
+    Execute o comando abaixo para instalar as dependências PHP usando o Composer:
+
+    ```bash
+    docker-compose exec app composer install
+    ```
+
+5. **Execute as migrações:**
+
+    Para criar as tabelas no banco de dados:
+
+    ```bash
+    docker-compose exec app php artisan migrate
+    ```
+
+5. **Faça chamada dos endpoints:**
+
+    Para criar as tabelas no banco de dados:
+
+    ```bash
+    POST /conta -> Cria uma nova conta
+    GET /conta -> Pesquisa uma conta especifica
+    POST /transacao -> Gera uma transação em uma conta
+    ```
+
+## Configuração
+
+- **Variáveis de Ambiente:** Certifique-se de que o arquivo `.env` está configurado corretamente. Veja um exemplo básico de configuração:
+
+    ```env
+    APP_NAME=ms-bank-management
+    APP_ENV=local
+    APP_KEY=
+    APP_DEBUG=true
+    APP_URL=http://localhost:8080
+    APP_TIMEZONE=America/Sao_Paulo
+
+    LOG_CHANNEL=stack
+    LOG_SLACK_WEBHOOK_URL=
+
+    DB_CONNECTION=sqlite
+    DB_DATABASE=/var/www/html/storage/database.sqlite
+
+    CACHE_DRIVER=file
+    QUEUE_CONNECTION=sync
+    ```
+
+- **Banco de Dados:** As migrações devem criar automaticamente as tabelas necessárias. Certifique-se de que a configuração do banco de dados no `.env` corresponde ao serviço do banco de dados definido no `docker-compose.yml`.
+
+## Execução
+
+Para iniciar a aplicação, use o comando:
+
+```bash
+docker-compose up -d
