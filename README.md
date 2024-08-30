@@ -8,11 +8,6 @@ Este projeto é uma API de gestão bancária desenvolvida em Lumen. A API é lev
 - [Instalação](#instalação)
 - [Configuração](#configuração)
 - [Execução](#execução)
-- [Uso](#uso)
-- [Endpoints](#endpoints)
-- [Testes](#testes)
-- [Contribuição](#contribuição)
-- [Licença](#licença)
 
 ## Pré-requisitos
 
