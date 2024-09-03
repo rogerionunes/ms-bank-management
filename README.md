@@ -1,6 +1,6 @@
 # API de Gestão Bancária
 
-Este projeto é uma API de gestão bancária desenvolvida em Lumen. A API é leve, rápida e configurada para rodar em um ambiente Docker para facilitar a instalação e a execução.
+Este projeto é uma API de gestão bancária desenvolvida em Lumen. A API é leve, rápida e configurada para rodar em um ambiente Docker para facilitar a instalação e a execução. Foi teste do processo seletivo de uma empresa.
 
 ## Índice
 
